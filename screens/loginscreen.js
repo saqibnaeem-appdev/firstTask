@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, SafeAreaView, Dimensions} from 'react-native';
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -7,12 +7,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Button } from '@react-navigation/elements';
 import { createStaticNavigation,useNavigation} from '@react-navigation/native';
+
+const {width, height}=Dimensions.get('window')
  const LoginScreen=() => {
     const navigation=useNavigation()
   
   return (
     <SafeAreaView style={styles.container}>
-      <Image source={require('./group62.png')} style={styles.image} />
+      <View style={styles.topSection}>
+      <Image source={require('./logimage.png')} style={styles.image} />
+      </View>
+      <View style={styles.bottomSection}>
       <View style={styles.formContainer}>
         <Text style={styles.label}>What is your firstname?</Text>
         <TextInput
@@ -23,6 +28,7 @@ import { createStaticNavigation,useNavigation} from '@react-navigation/native';
           <Text style={styles.buttonText}>Start Ordering</Text>
         </TouchableOpacity>
       </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -30,18 +36,28 @@ import { createStaticNavigation,useNavigation} from '@react-navigation/native';
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#FFA54F', 
+      backgroundColor: '#fff', 
       alignItems: 'center',
     },
+    topSection: 
+    {
+      backgroundColor: '#FFA54F',
+      alignItems: 'center',
+      paddingTop: 44
+,    },
+bottomSection:{
+  flex: 1,
+  backgroundColor: '#fff',
+  width: '100%',
+  alignItems: 'center',
+},
     image: {
-      width: 375,
-      height: 425,
-      marginTop: 44,
+      width: width,
+      height: height*(425/812),
       resizeMode: 'contain',
     },
     formContainer: {
-      width: 327,
-      height: 199,
+      width: (327/375)*width,
       backgroundColor: '#fff',
       borderRadius: 10,
       padding: 16,
@@ -54,7 +70,7 @@ const styles = StyleSheet.create({
       marginBottom: 12,
     },
     input: {
-      height: 101,
+      height: height*(101/812),
       width: '100%',
       borderRadius: 10,
       backgroundColor: '#F5F4F6',
@@ -65,7 +81,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     button: {
-      height: 56,
+      height: height*(56/812),
       width: '100%',
       borderRadius: 10,
       backgroundColor: '#FFA54F',
